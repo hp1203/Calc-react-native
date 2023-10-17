@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import KeypadInput from "./components/KeypadInput";
 import {
@@ -12,6 +12,13 @@ import {
 import { styled, useColorScheme } from "nativewind";
 import { getFontSize } from "./utils";
 
+import { AdEventType, BannerAd, BannerAdSize, InterstitialAd, TestIds } from "react-native-google-mobile-ads";
+
+const interstitialAdUnitId =  TestIds.INTERSTITIAL; 
+const bannerAdUnitId =  TestIds.BANNER 
+const interstitial = InterstitialAd.createForAdRequest(interstitialAdUnitId, {
+  requestNonPersonalizedAdsOnly: true,
+});
 
 export default function App() {
   const [firstInput, setFirstInput] = useState("");
@@ -19,6 +26,7 @@ export default function App() {
   const [result, setResult] = useState("");
   const [operation, setOperation] = useState("");
   const { colorScheme, toggleColorScheme } = useColorScheme();
+  
   const renderOperation = () => {
     if (operation == "/") {
       return (
@@ -75,9 +83,19 @@ export default function App() {
         break;
     }
   }
+
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+        interstitial.show();
+    });
+    // Start loading the interstitial straight away
+    interstitial.load();
+    // Unsubscribe from events on unmount
+    return unsubscribe;
+  }, []);
   return (
     <>
- 
+    
     <View className="flex-1 bg-gray-100 dark:bg-gray-900">
         <View className="flex flex-row items-center justify-between mt-7 px-3">
           <TouchableOpacity onPress={toggleColorScheme}>
@@ -119,7 +137,13 @@ export default function App() {
       </View>
       <StatusBar style="auto" />
     </View>
-      
+    <BannerAd 
+        unitId={bannerAdUnitId}
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+        requestOptions={{
+          requestNonPersonalizedAdsOnly: true, // optional
+        }}
+      />
     </>
   );
 }
