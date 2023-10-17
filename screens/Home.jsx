@@ -14,19 +14,19 @@ import { useDispatch } from "react-redux";
 import { addHistory } from "../store/history";
 import InputOutput from "../components/InputOutput";
 
-// import {
-//   AdEventType,
-//   BannerAd,
-//   BannerAdSize,
-//   InterstitialAd,
-//   TestIds,
-// } from "react-native-google-mobile-ads";
+import {
+  AdEventType,
+  BannerAd,
+  BannerAdSize,
+  InterstitialAd,
+  TestIds,
+} from "react-native-google-mobile-ads";
 
-// const interstitialAdUnitId = TestIds.INTERSTITIAL; //"ca-app-pub-1570613060494374/1656626828";
-// const bannerAdUnitId = TestIds.BANNER; //"ca-app-pub-1570613060494374~6155810899";
-// const interstitial = InterstitialAd.createForAdRequest(interstitialAdUnitId, {
-//   requestNonPersonalizedAdsOnly: true,
-// });
+const interstitialAdUnitId = "ca-app-pub-1570613060494374/1656626828";
+const bannerAdUnitId = "ca-app-pub-1570613060494374~6155810899";
+const interstitial = InterstitialAd.createForAdRequest(interstitialAdUnitId, {
+  requestNonPersonalizedAdsOnly: true,
+});
 
 const Home = ({ navigation }) => {
   const [firstInput, setFirstInput] = useState("");
@@ -74,18 +74,18 @@ const Home = ({ navigation }) => {
     }));
   };
 
-//   useEffect(() => {
-//     const unsubscribe = interstitial.addAdEventListener(
-//       AdEventType.LOADED,
-//       () => {
-//         interstitial.show();
-//       }
-//     );
-//     // Start loading the interstitial straight away
-//     interstitial.load();
-//     // Unsubscribe from events on unmount
-//     return unsubscribe;
-//   }, []);
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(
+      AdEventType.LOADED,
+      () => {
+        interstitial.show();
+      }
+    );
+    // Start loading the interstitial straight away
+    interstitial.load();
+    // Unsubscribe from events on unmount
+    return unsubscribe;
+  }, []);
   return (
     <>
       <View className="flex-1 bg-gray-100 dark:bg-gray-900">
@@ -122,13 +122,13 @@ const Home = ({ navigation }) => {
         </View>
         <StatusBar style="auto" />
       </View>
-      {/* <BannerAd
+      <BannerAd
         unitId={bannerAdUnitId}
         size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true, // optional
         }}
-      /> */}
+      />
     </>
   );
 };
