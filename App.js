@@ -10,6 +10,8 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 import { styled, useColorScheme } from "nativewind";
+import { getFontSize } from "./utils";
+
 
 export default function App() {
   const [firstInput, setFirstInput] = useState("");
@@ -20,29 +22,29 @@ export default function App() {
   const renderOperation = () => {
     if (operation == "/") {
       return (
-        <Text className="text-red-500 font-semibold">
-          <Feather name="divide" size={30} />
+        <Text className="text-red-500 font-semibold" style={{ fontSize: getFontSize(30)}}>
+          <Feather name="divide" size={getFontSize(30)} />
         </Text>
       );
     }
     if (operation == "*") {
       return (
-        <Text className="text-red-500 font-semibold">
-          <Ionicons name="close-sharp" size={30} />
+        <Text className="text-red-500 font-semibold" style={{ fontSize: getFontSize(30)}}>
+          <Ionicons name="close-sharp" size={getFontSize(30)} />
         </Text>
       );
     }
     if (operation == "+") {
       return (
-        <Text className="text-red-500 font-semibold">
-          <AntDesign name="plus" size={30} />
+        <Text className="text-red-500 font-semibold" style={{ fontSize: getFontSize(30)}}>
+          <AntDesign name="plus" size={getFontSize(30)} />
         </Text>
       );
     }
     if (operation == "-") {
       return (
-        <Text className="text-red-500 font-semibold">
-          <AntDesign name="minus" size={30} />
+        <Text className="text-red-500 font-semibold" style={{ fontSize: getFontSize(30)}}>
+          <AntDesign name="minus" size={getFontSize(30)} />
         </Text>
       );
     }
@@ -74,6 +76,8 @@ export default function App() {
     }
   }
   return (
+    <>
+ 
     <View className="flex-1 bg-gray-100 dark:bg-gray-900">
         <View className="flex flex-row items-center justify-between mt-7 px-3">
           <TouchableOpacity onPress={toggleColorScheme}>
@@ -83,23 +87,23 @@ export default function App() {
               }
             </Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity>
+          <TouchableOpacity>
             <Text className="text-gray-400 dark:text-gray-100">
               <MaterialCommunityIcons name="history" size={28}/>
             </Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
         </View>
       <View className="flex-1 p-4 justify-end items-end space-y-2">
         <View className="flex flex-row items-center space-x-1">
           {firstInput && (
-            <Text className="text-gray-700 dark:text-gray-100 text-3xl">{firstInput}</Text>
+            <Text className="text-gray-700 dark:text-gray-100" style={{ fontSize: getFontSize(24)}}>{firstInput}</Text>
           )}
           {renderOperation()}
           {secondInput && (
-            <Text className="text-gray-700 dark:text-gray-100 text-3xl">{secondInput}</Text>
+            <Text className="text-gray-700 dark:text-gray-100" style={{ fontSize: getFontSize(24)}}>{secondInput}</Text>
           )}
         </View>
-          {result !== null && <Text className="text-gray-700 dark:text-gray-100 font-semibold text-5xl">{result}</Text>}
+          {result !== null && <Text className="text-gray-700 dark:text-gray-100 font-semibold" style={{ fontSize: getFontSize(30)}}>{result}</Text>}
       </View>
       <View>
         <KeypadInput
@@ -115,5 +119,7 @@ export default function App() {
       </View>
       <StatusBar style="auto" />
     </View>
+      
+    </>
   );
 }

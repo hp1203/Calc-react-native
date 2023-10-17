@@ -18,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.orbitalinnovation.calculator"
     },
     "android": {
       "adaptiveIcon": {
@@ -35,5 +36,9 @@
         "projectId": "36b2497b-c1b2-4ee3-9bd5-b8f1bb7e9486"
       }
     }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-1570613060494374~6155810899",
+    "ios_app_id": "ca-app-pub-1570613060494374~4336883645"
   }
 }

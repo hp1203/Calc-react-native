@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TouchableHighlight } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import {
   Feather,
@@ -7,15 +7,19 @@ import {
   MaterialCommunityIcons,
   Entypo,
 } from "@expo/vector-icons";
+import { getFontSize } from "../utils";
 
-const Key = ({ value, display, type, handleKeyPress }) => (
-  <TouchableHighlight
-    className="flex-1 w-full items-center rounded-full hover:bg-gray-800 justify-center p-4 m-4 shadow-md "
+const Key = ({ value, display, type, handleKeyPress }) => {
+
+  return (
+  <TouchableOpacity
+    className="flex-1 w-full items-center rounded-full hover:bg-gray-300 dark:hover:bg-gray-800 justify-center p-4 m-2 shadow-md "
     onPress={() => handleKeyPress(value, type)}
   >
-    <Text className="text-2xl font-semibold text-gray-700 dark:text-gray-100">{display}</Text>
-  </TouchableHighlight>
-);
+    <Text className="font-semibold text-gray-700 dark:text-gray-100" style={{ fontSize: getFontSize(22) }}>{display}</Text>
+  </TouchableOpacity>
+  );
+}
 
 const KeypadInput = ({
   firstInput,
@@ -27,6 +31,7 @@ const KeypadInput = ({
   calculate,
   clearData,
 }) => {
+  
   const handleKeyPress = (value, type) => {
     if (type == "input") {
       if (operation !== "") {
