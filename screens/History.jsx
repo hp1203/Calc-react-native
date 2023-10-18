@@ -4,6 +4,9 @@ import InputOutput from "../components/InputOutput";
 import { Octicons } from "@expo/vector-icons";
 import { getFontSize } from "../utils";
 import { removeHistory } from "../store/history";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+
+const bannerAdUnitId = "ca-app-pub-1570613060494374/4644839553";
 
 const History = ({ route, navigation }) => {
   const { history } = useSelector((state) => state.history);
@@ -60,6 +63,13 @@ const History = ({ route, navigation }) => {
               />
             </TouchableOpacity>
           );
+        }}
+      />
+      <BannerAd
+        unitId={bannerAdUnitId}
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+        requestOptions={{
+          requestNonPersonalizedAdsOnly: true, // optional
         }}
       />
     </View>

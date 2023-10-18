@@ -2,7 +2,7 @@
   "expo": {
     "name": "Calc",
     "slug": "calc",
-    "version": "1.0.0",
+    "version": "1.5.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -26,7 +26,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#111827"
       },
-      "package": "com.orbitalinnovation.calculator"
+      "package": "com.orbitalinnovation.calculator",
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,7 +36,17 @@
       "eas": {
         "projectId": "36b2497b-c1b2-4ee3-9bd5-b8f1bb7e9486"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "targetSdkVersion": 33
+          }
+        }
+      ]
+    ]
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-1570613060494374~6155810899",

@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import KeypadInput from "../components/KeypadInput";
 import {
-  Feather,
-  Ionicons,
-  AntDesign,
   FontAwesome5
 } from "@expo/vector-icons";
 import { useColorScheme } from "nativewind";
@@ -23,7 +20,7 @@ import {
 } from "react-native-google-mobile-ads";
 
 const interstitialAdUnitId = "ca-app-pub-1570613060494374/1656626828";
-const bannerAdUnitId = "ca-app-pub-1570613060494374~6155810899";
+const bannerAdUnitId = "ca-app-pub-1570613060494374/4644839553";
 const interstitial = InterstitialAd.createForAdRequest(interstitialAdUnitId, {
   requestNonPersonalizedAdsOnly: true,
 });
@@ -35,7 +32,6 @@ const Home = ({ navigation }) => {
   const [operation, setOperation] = useState("");
   const { colorScheme, toggleColorScheme } = useColorScheme();
   const dispatch = useDispatch();
-
 
   const clearData = () => {
     setFirstInput("");
@@ -121,7 +117,6 @@ const Home = ({ navigation }) => {
           />
         </View>
         <StatusBar style="auto" />
-      </View>
       <BannerAd
         unitId={bannerAdUnitId}
         size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
@@ -129,6 +124,7 @@ const Home = ({ navigation }) => {
           requestNonPersonalizedAdsOnly: true, // optional
         }}
       />
+      </View>
     </>
   );
 };
